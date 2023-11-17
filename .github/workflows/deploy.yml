@@ -9,12 +9,10 @@ env:
 jobs:
   test:
     env:
-        MONGODB_CLUSTER_ADDRESS: cluster0.dusffwa.mongodb.net
-        MONGODB_USERNAME: maffalcao
-        MONGODB_PASSWORD: maffalcao22
-        PORT: 8080
-
-    environment: testing
+      MONGODB_CLUSTER_ADDRESS: cluster0.dusffwa.mongodb.net
+      MONGODB_USERNAME: maffalcao
+      MONGODB_PASSWORD: maffalcao22
+      PORT: 8080
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -31,11 +29,12 @@ jobs:
       - name: Run tests
         run: npm test
       - name: Output information
-        run: echo "MONGODB_USERNAME: ${{ env.MONGODB_PASSWORD }}""
+        run: |
+          echo "MONGODB_USERNAME: ${{ env.MONGODB_PASSWORD }}"
   deploy:
     needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Output information
-        run: |        
+        run: |
           run: echo "MONGODB_USERNAME: ${{ env.MONGODB_PASSWORD }}" #not available
